@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./;protochatapi";
+
+service MessagingService {
+  rpc SendMessage(MessageRequest) returns (MessageResponse);
+  rpc Subscribe(SubscriptionRequest) returns (stream MessageResponse);
+}
+
+message MessageRequest {
+  string recipient_id = 1;
+  string message = 2;
+}
+
+message SubscriptionRequest {
+  string client_id = 1;
+}
+
+message MessageResponse {
+  string sender_id = 1;
+  string message = 2;
+}
